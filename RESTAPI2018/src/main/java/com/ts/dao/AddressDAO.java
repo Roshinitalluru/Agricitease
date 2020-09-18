@@ -28,6 +28,8 @@ private SessionFactory factory = null;
 		return addressList;	
 	}
 
-
+	public int updateAddress(Address address){
+		return HibernateTemplate.updateObject(address);
+	}
 
 }

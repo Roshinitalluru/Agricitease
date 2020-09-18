@@ -633,5 +633,20 @@ public class MyResource1 {
 	    
 	    return farm;
 	    }
+	    @Path("updateProfile")
+		@PUT
+		@Consumes(MediaType.APPLICATION_JSON)
+		public void updateProfile(Address address){
+			System.out.println("the recieved object is "+address);
+			User usr = address.getUser();
+			System.out.println("the recieved object full name is"+usr.getFullName());
+			System.out.println("the recieved object mobileNumber is"+ usr.getMobileNumber());
+			System.out.println("the recieved object age is"+usr.getAge());
+			System.out.println("the recieved object state is"+address.getState());
+			System.out.println("the recieved object pincode is"+address.getPincode());
+			AddressDAO addrDAO = new AddressDAO();
+			addrDAO.updateAddress(address);
+		}
+		
 	    
 }

@@ -22,7 +22,7 @@ import com.rest.dto.User;
 
 @XmlRootElement
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "addressId")
+property = "addressId",scope= Address.class)
 @Entity
 public class Address {
 	@Id@GeneratedValue
