@@ -275,5 +275,52 @@ public static User getObjectByUserId1(int userId) {
 		String query = "from Blog" ;
 		return sessionFactory.openSession().createQuery(query).list();
 	}
+	
+	//count
+	public static  long getCount(){
+		String queryString ="select count(userId) from User";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		Object queryResult = query.uniqueResult();
+		long count =(long)queryResult;
+		return count;
+		
+	}
+	
+	public static  long getCountF(){
+		String queryString ="select count(*) from User where role = 'farmer' ";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		Object queryResult = query.uniqueResult();
+		long countF =(long)queryResult;
+		return countF;
+		
+	}
+	
+	public static  long getCountC(){
+		String queryString ="select count(*) from User where role = 'consumer' ";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		Object queryResult = query.uniqueResult();
+		long countC =(long)queryResult;
+		return countC;
+		
+	}
+	
+	public static  long getCountY(){
+		String queryString ="select count(farmId) from Farm";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		Object queryResult = query.uniqueResult();
+		long countY =(long)queryResult;
+		return countY;
+		
+	}
+	
+	public static  long getCountYA(){
+		String queryString ="select count(*) from Orders where status = 'Accepted' ";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		Object queryResult = query.uniqueResult();
+		long countYA =(long)queryResult;
+		return countYA;
+		
+	}
+
 
 }

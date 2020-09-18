@@ -23,9 +23,22 @@ public class UserDAO {
 		// TODO Auto-generated method stub
 		return (List<User>)HibernateTemplate.getObjectByquali(qualification);
 
-
-
-
-
 }
+	//count
+	public long getCount() {
+		// TODO Auto-generated method stub
+		return (long)HibernateTemplate.getCount();
+	}
+	
+	public long getCountC() {
+		// TODO Auto-generated method stub
+		return (long)HibernateTemplate.getCountC();
+	}
+	
+	public long getCountF() {
+		// TODO Auto-generated method stub
+		return (long)HibernateTemplate.getCountF();
+	}
+	
+
 }

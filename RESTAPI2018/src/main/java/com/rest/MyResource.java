@@ -263,6 +263,54 @@ public class MyResource {
 		// TODO Auto-generated method stub
    	
 	}
+   //count
+   
+   @Path("getCount")
+  	@GET
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public long getCount(){
+   	UserDAO userDao = new UserDAO();
+  		long userCount = userDao.getCount();
+  		return userCount;
+  		
+  	}
+   @Path("getCountF")
+  	@GET
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public long getCountF(){
+   	UserDAO userDao = new UserDAO();
+  		long userCountF = userDao.getCountF();
+  		return userCountF;
+  		
+  	}
+   @Path("getCountC")
+  	@GET
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public long getCountC(){
+   	UserDAO userDao = new UserDAO();
+  		long userCountC = userDao.getCountC();
+  		return userCountC;
+  		
+  	}
+   @Path("getCountY")
+  	@GET
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public long getCountY(){
+   	FarmDAO yieldDao = new FarmDAO();
+  		long userCountY = yieldDao.getCountY();
+  		return userCountY;
+  		
+  	}
+   
+   @Path("getCountYA")
+  	@GET
+  	@Produces(MediaType.APPLICATION_JSON)
+  	public long getCountYA(){
+   	FarmDAO yieldDao = new FarmDAO();
+  		long userCountYA = yieldDao.getCountYA();
+  		return userCountYA;
+  		
+  	}
 
     	
 }

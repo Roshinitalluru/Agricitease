@@ -46,14 +46,34 @@ public class MyResource1 {
     public String getIt() {
         return "Got it!";
     } 
+	//@Path("registerfarmer")
+	//@POST
+	// @Consumes(MediaType.APPLICATION_JSON)
+	//public User registerfarmer(Address address){
+	//System.out.println("data recieved " + address);
+	//AddressDAO addrdao = new AddressDAO();
+		//addrdao.register(address);
+		//return address.getUser();
+		//}
 	@Path("registerfarmer")
 	@POST
     @Consumes(MediaType.APPLICATION_JSON)
 	public User registerfarmer(Address address){
 		System.out.println("data recieved " + address);
+		String pwd = address.getUser().getPassword();
+		address.getUser().setPassword(securepassword(pwd));
 		AddressDAO addrdao = new AddressDAO();
+		
+		
 		addrdao.register(address);
 		return address.getUser();
+	}
+	public String securepassword(String pwd){
+		char[] chars = pwd.toCharArray();
+		for (int i=0; i<chars.length; i++){
+			chars[i] += 5;}
+			String str2 = String.valueOf(chars);
+		return str2 ;
 	}
 	@Path("farmUpload")
 	@POST
@@ -95,16 +115,34 @@ public class MyResource1 {
     	farmdao.updateEmp(farm);
     	System.out.println("Data recieved in update"+farm);
     }
-	@Path("loginuser/{userName}/{password}/{role}")
+	//@Path("loginuser/{userName}/{password}/{role}")
+    // @GET
+    // @Produces(MediaType.APPLICATION_JSON)
+    //public User loginuser(@PathParam("userName") String userName, @PathParam("password") String password ,@PathParam("role") String role){
+    //UserDAO userdao = new UserDAO();
+    //System.out.println("data in path params"+" "+userName+" "+password+" "+role);
+    //User user1 = userdao.login(userName,password,role);
+    //System.out.println(user1);
+    //return user1;
+    //}
+    @Path("loginuser/{userName}/{password}/{role}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 	public User loginuser(@PathParam("userName") String userName, @PathParam("password") String password ,@PathParam("role") String role){
 		UserDAO userdao = new UserDAO();
-		System.out.println("data in path params"+" "+userName+" "+password+" "+role);
-		User user1 = userdao.login(userName,password,role);
+		char[] chars = password.toCharArray();
+		System.out.println(password);
+		for (int i=0; i<chars.length; i++){
+			chars[i] += 5;}
+		String str2 = String.valueOf(chars);
+		
+			
+		
+		System.out.println("data in path params"+" "+userName+" "+str2+" "+role);
+		User user1 = userdao.login(userName,str2,role);
 		System.out.println(user1);
 		return user1;
-	}
+		}
 	@POST
 	@Path("/uploadImage")	
 	@Consumes({MediaType.MULTIPART_FORM_DATA})

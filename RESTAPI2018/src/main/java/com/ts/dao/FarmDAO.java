@@ -63,5 +63,15 @@ private SessionFactory factory = null;
 		tx.commit();
 		session.close();
 	}
+	//count
+	public long getCountY() {
+		// TODO Auto-generated method stub
+		return (long)HibernateTemplate.getCountY();
+	} 
+	
+	public long getCountYA() {
+		// TODO Auto-generated method stub
+		return (long)HibernateTemplate.getCountYA();
+	}
 
 }
