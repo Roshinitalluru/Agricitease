@@ -73,5 +73,7 @@ private SessionFactory factory = null;
 		// TODO Auto-generated method stub
 		return (long)HibernateTemplate.getCountYA();
 	}
-
+	public long getCropCount(String crop){
+		return HibernateTemplate.getCropCount(crop);
+	}
 }

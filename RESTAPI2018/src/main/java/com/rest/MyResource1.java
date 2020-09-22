@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ import com.rest.dto.Blog;
 import com.rest.dto.Farm;
 import com.rest.dto.Orders;
 import com.rest.dto.Product;
+import com.rest.dto.Statistics;
 import com.rest.dto.User;
 import com.ts.dao.AddressDAO;
 import com.ts.dao.BlogDAO;
@@ -647,6 +649,34 @@ public class MyResource1 {
 			AddressDAO addrDAO = new AddressDAO();
 			addrDAO.updateAddress(address);
 		}
-		
+		//statics
+	    @Path("statistics")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Statistics> getFarmerStatistics(){
+			FarmDAO frdao = new FarmDAO();
+			List<Farm> farmsList = frdao.getAllFarms();
+			List<String> crops = new ArrayList<String>();
+			for(Farm fr:farmsList){
+				crops.add(fr.getCrop());
+			}
+			LinkedHashSet<String> lhSetCrops = new LinkedHashSet(crops);
+			System.out.println(lhSetCrops);
+			List<Long> cropCounts = new ArrayList<Long>();
+			List<Statistics> sts = new ArrayList<Statistics>();
+			for (String cro:lhSetCrops){
+				cropCounts.add(frdao.getCropCount(cro));
+				Statistics stss = new Statistics();
+				stss.setCrop(cro);
+				stss.setCounts((int) frdao.getCropCount(cro));
+				sts.add(stss);
+			}
+			System.out.println(cropCounts);
+			for(Statistics st:sts){
+				System.out.println("the crop is"+st.getCrop()+"and the count is"+st.getCounts());
+			}
+			return sts;
+			
+		}
 	    
 }

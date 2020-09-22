@@ -321,6 +321,14 @@ public static User getObjectByUserId1(int userId) {
 		return countYA;
 		
 	}
-
+//statistics
+	public static long getCropCount(String crop){
+		String queryString = "select count(*) from Farm where crop = :crop";
+		Query query = sessionFactory.openSession().createQuery(queryString);
+		query.setString("crop", crop);
+		Object queryResult = query.uniqueResult();
+		long count = (long)queryResult;
+		return count;
+	}
 
 }
